@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+<ScrollView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+    <ImageButton
+        android:layout_width="404dp"
+        android:layout_height="264dp"
+        android:id="@+id/imageSelect"
+        android:layout_gravity="center_horizontal"
+        android:background="#00ffffff"
+        android:src="@mipmap/add_btn"
+        android:scaleType="centerCrop" />
+        <include layout="@layout/content_post" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit Post"
+            android:textColor="#ffffff"
+            android:background="@color/colorPrimary"
+            android:id="@+id/postButton"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+</ScrollView>
+
+</LinearLayout>

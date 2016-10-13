@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "335921531454",
+    "firebase_url": "https://pixsor-acb86.firebaseio.com",
+    "project_id": "pixsor-acb86",
+    "storage_bucket": "pixsor-acb86.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:335921531454:android:5945f6c9a078b4e0",
+        "android_client_info": {
+          "package_name": "pixsor.app.huzykamz.pixoradmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "335921531454-9vl869j7kl9t5h4uu4l0i1aq9t50hhl4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pixsor.app.huzykamz.pixoradmin",
+            "certificate_hash": "4E94A883B65403190DC0FD15885F4B59DD6439ED"
+          }
+        },
+        {
+          "client_id": "335921531454-i84k6dvjhb2oc89marpqti6t9q4sr609.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEo01bJXlbHLhc7vBBabr7DGFd-rYC23U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "335921531454-i84k6dvjhb2oc89marpqti6t9q4sr609.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
