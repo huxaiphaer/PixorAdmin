@@ -18,12 +18,15 @@
         android:background="#00ffffff"
         android:src="@mipmap/add_btn"
         android:scaleType="centerCrop" />
+
         <include layout="@layout/content_post" />
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Submit Post"
             android:textColor="#ffffff"
+
             android:background="@color/colorPrimary"
             android:id="@+id/postButton"
             android:layout_gravity="center_horizontal" />

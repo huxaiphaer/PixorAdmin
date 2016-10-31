@@ -84,7 +84,9 @@ public class RegisterActivity extends AppCompatActivity {
 
             mProgress.setMessage("Signing Up...");
             mProgress.show();
-          mAuth.createUserWithEmailAndPassword(name,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+           // mAuth.createUserWithEmailAndPassword()
+          mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
               @Override
               public void onComplete(@NonNull Task<AuthResult> task) {
 

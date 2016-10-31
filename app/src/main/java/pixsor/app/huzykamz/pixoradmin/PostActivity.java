@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -38,6 +39,7 @@ public class PostActivity extends AppCompatActivity {
     private ProgressDialog mProgress;
     private StorageReference mStorage;
     private Context c;
+    String eventname="";
     private DatabaseReference mDatabase;
 
 
@@ -52,10 +54,19 @@ public class PostActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Post a Picture");
 
-        mStorage = FirebaseStorage.getInstance().getReference();
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Blog");
+        Intent inn = getIntent();
 
+        try {
+            if (null != inn) {
+                eventname = inn.getStringExtra(EventViewActivity.EventViewHolder.KEY_PARTY_NAME);
+                mStorage = FirebaseStorage.getInstance().getReference();
+                mDatabase = FirebaseDatabase.getInstance().getReference().child("Blog").child("SingleEvent").child(eventname);
+            }
+        }
+        catch (Exception e){
 
+            System.out.println("Error :"+ e);
+        }
 
         mProgress = new ProgressDialog(this);
         imageSelect = (ImageButton) findViewById(R.id.imageSelect);
@@ -88,36 +99,71 @@ public class PostActivity extends AppCompatActivity {
 
         final String title_val = mPostTitle.getText().toString().trim();
         final String desc_val = mPostDesc.getText().toString().trim();
-  if((!TextUtils.isEmpty(title_val) &&!TextUtils.isEmpty(desc_val) && imageUri!=null)
-          ||(!TextUtils.isEmpty(title_val) &&!TextUtils.isEmpty(desc_val) && imageUri==null)){
-      mProgress.show();
-      StorageReference filepath = mStorage.child("BlogImages").child(imageUri.getLastPathSegment());
-      filepath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-          @Override
-          public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+        if (!TextUtils.isEmpty(title_val) && !TextUtils.isEmpty(desc_val) && imageUri != null) {
+            mProgress.show();
+            StorageReference filepath = mStorage.child("BlogImages").child(imageUri.getLastPathSegment());
+            filepath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
 
-              Uri downloadUri = taskSnapshot.getDownloadUrl();
-              DatabaseReference newPost = mDatabase.push();
-              newPost.child("title").setValue(title_val);
-              newPost.child("description").setValue(desc_val);
-              newPost.child("imageUrl").setValue(downloadUri.toString());
-            //  newPost.child("uid").setValue(FirebaseAuth.getc);
-
-
-              mProgress.dismiss();
-
-              startActivity(new Intent(PostActivity.this,MainActivity.class));
-          }
-      });
-
-
-  }
+                    Uri downloadUri = taskSnapshot.getDownloadUrl();
+                    DatabaseReference newPost = mDatabase.push();
+                    DatabaseReference c = mDatabase.push();
+                    newPost.child("EventTitle").setValue(title_val);
+                    newPost.child("EventDescription").setValue(desc_val);
+                    newPost.child("EventImage").setValue(downloadUri.toString());
+                    newPost.child("PostId").setValue(c);
 
 
 
+                    mProgress.dismiss();
+                    startActivity(new Intent(PostActivity.this, MainActivity.class));
+
+
+                }
+            }
+
+
+            );
+
+
+        } else if (TextUtils.isEmpty(title_val) && TextUtils.isEmpty(desc_val) && imageUri != null) {
+            mProgress.show();
+            StorageReference filepath = mStorage.child("BlogImages").child(imageUri.getLastPathSegment());
+            filepath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+
+                    Uri downloadUri = taskSnapshot.getDownloadUrl();
+                    DatabaseReference newPost = mDatabase.push();
+                    newPost.child("EventTitle").setValue("");
+                    newPost.child("EventDescription").setValue("");
+                    newPost.child("EventImage").setValue(downloadUri.toString());
+
+
+                    mProgress.dismiss();
+                   // startActivity(new Intent(PostActivity.this, MainActivity.class));
+                  Intent load=  new Intent(PostActivity.this,MainActivity.class);
+                    load.putExtra(eventname,eventname);
+                    startActivity(load);
+
+
+                }
+            }
+
+
+            );
+
+        }
+
+        else if (!TextUtils.isEmpty(title_val) && !TextUtils.isEmpty(desc_val) && imageUri== null){
+
+            Toast.makeText(getApplicationContext(),"Please insert an Image and Upload ! ",Toast.LENGTH_LONG).show();
+
+        }
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -127,7 +173,7 @@ public class PostActivity extends AppCompatActivity {
 
              imageUri = data.getData();
             Picasso.with(c).load(imageUri).fit().into(imageSelect);
-            //imageSelect.setImageURI(imageUri);
+
         }
     }
 

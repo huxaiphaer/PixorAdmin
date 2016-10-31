@@ -4,6 +4,11 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+
+
+    <!--    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/> -->
+
+
     <application
         android:name=".PixorAdmin"
         android:allowBackup="true"
@@ -12,24 +17,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".EventViewActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".PostActivity" />
-        <activity
-            android:name=".Tabs"
-            android:label="@string/title_activity_tabs"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ViewSingleImage" />
-        <activity
-            android:name=".RegisterActivity"
-            />
-    </application>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".SetupActivity" />
+        <activity android:name=".MainActivity"/>
+
+    <activity android:name=".AddEventActivity"></activity>
+</application>
 
 </manifest>

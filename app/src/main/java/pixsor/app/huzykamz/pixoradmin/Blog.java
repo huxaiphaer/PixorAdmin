@@ -10,7 +10,7 @@ public class Blog {
     private String imageUrl;
 
     public Blog() {
-      // This is left out for firebase , by Huxaiphaer
+      // This is left out for firebase
     }
 
     public String getTitle() {

@@ -3,27 +3,62 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp" />
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/et_email_"
+        android:background="@drawable/input_outline"
         android:hint="Email"
         android:layout_gravity="right"
 
-        android:paddingTop="20dp" />
+        android:paddingTop="20dp"
+        android:padding="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText2"
+        android:id="@+id/et_password_"
+        android:background="@drawable/input_outline"
+        android:inputType="textPassword"
         android:hint="password"
-        android:paddingTop="20dp" />
+        android:paddingTop="20dp"
+        android:padding="20dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign In"
-        android:id="@+id/button"
+        android:id="@+id/button_login"
+        android:textColor="#ffffff"
+        android:background="@color/colorPrimaryDark"
         android:layout_gravity="center_horizontal"
         android:paddingTop="10dp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp" />
+
+    <Button
+        android:text="Not yet Registered"
+        android:layout_width="match_parent"
+        android:textColor="#ffffff"
+        android:background="@color/colorPrimaryDark"
+        android:layout_height="wrap_content"
+        android:id="@+id/notYet_Registered" />
 </LinearLayout>
